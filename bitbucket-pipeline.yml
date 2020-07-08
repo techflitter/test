@@ -1,0 +1,10 @@
+pipelines:
+	default:
+		- step:
+			script:
+				- docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+				- docker build -t joyride/laravel:$BITBUCKET_COMMIT .
+				- docker push  joyride/laravel:$BITBUCKET_COMMIT
+
+options:
+	docker: true
